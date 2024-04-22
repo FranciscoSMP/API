@@ -1,0 +1,36 @@
+body{
+  background: url('../src/assets/flat-mountains.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  font-family: 'Dosis', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+}
+form input{
+  width: 14vh;
+  height: 3vh;
+  border-radius: 10px;
+  border:none;
+  padding: 10px;
+  transition: all ease 1s;
+}
+input:focus{
+  outline: none;
+  box-shadow: 1px 1px 1px 1px #4a4343
+}
+form button{
+  margin:20px;
+  height:4vh;
+  width:9vh;
+  border-radius: 10px;
+  outline: none;
+  border:none;
+  transition: all ease .5s;
+}
+form button:hover{
+  background-color: rgb(195, 145, 242);
+}
