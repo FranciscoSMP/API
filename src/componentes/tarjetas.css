@@ -1,0 +1,26 @@
+.cancion{
+    margin:10px;
+    border:10px solid black;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 3px 3px 3px 3px rgba(0, 0, 0, 0.226);
+    border:none;
+}
+
+.container{
+    display: flex;
+    flex-wrap: wrap;
+    gap:10px;
+
+}
+.cancion img{
+    border-radius: 15px;
+    width: 215px;
+    height: 215px;
+    transition: all ease .5s;
+}
+
+.cancion img:hover{
+    transform: scale(1.1);
+    transition: all ease .5s;
+}

@@ -6,7 +6,7 @@ body{
 }
 
 form input{
-  width: 14vh;
+  width: 26vh;
   height: 3vh;
   border-radius: 10px;
   border:none;
@@ -16,13 +16,13 @@ form input{
 
 input:focus{
   outline: none;
-  box-shadow: 1px 1px 1px 1px #444141
+  box-shadow: 1px 1px 1px 1px #4a4343
 }
 
 form button{
   margin:20px;
-  height:4vh;
-  width:9vh;
+  height:6vh;
+  width:14vh;
   border-radius: 10px;
   outline: none;
   border:none;

@@ -1,18 +1,21 @@
 import { useState } from 'react'
 import './App.css'
+import { Tarjetas } from './componentes/Tarjetas'
 
 function App() {
-  const [cancion, setCancion] = useState('')
-  const [canciones, setCanciones] = useState([])
 
-  function handleSearch(e){
-    e.preventDefault();
-    if(cancion.trim()==''){
+  const [buscar, setBuscar] = useState();
+  const [existe, setExiste] = useState(false);
+  const [segundaBusqueda, setSegundaBusqueda] = useState();
+
+  function handleBuscar(e){
+    if(!buscar){
+      e.preventDefault();
       alert('Debe ingresar algo')
-      return
+    }else{
+      e.preventDefault();
+      buscarSpotify(buscar)   
     }
-    setCancion('')
-    getCancion(cancion)
   }
 
   const options = {
@@ -23,34 +26,38 @@ function App() {
     }
   };
 
-  async function getCancion(cancion){
+  async function buscarSpotify(buscar){
     try {
-      let url = `https://spotify23.p.rapidapi.com/search/?q=${cancion}&type=multi&offset=0&limit=10&numberOfTopResults=5`
-      let data = await fetch(url,options)
-      let res = await data.json()
-      setCanciones(res.tracks.items)
+      let url = `https://spotify23.p.rapidapi.com/search/?q=${buscar}&type=tracks&offset=0&limit=25&numberOfTopResults=5`
+      let res = await fetch(url, options)
+      let data = await res.json();
+      setExiste(true)
+      setSegundaBusqueda(data.tracks.items)
+      
     } catch (error) {
-      console.log(`Error: ${error}`)
+      console.log(`Error: ${e}`)
     }
   }
 
   return (
-    <>
-    <h2>Spotify API</h2>
-    <form onSubmit={handleSearch}>
-      <input type="text" value={cancion} onChange={e => setCancion(e.target.value)} />
-      <button type='submit'>Buscar</button>
-    </form>
-    {canciones.map((cancion, index) => (
+    <div className="App">
+     <h3>Spotify API</h3>
+     <form onSubmit={handleBuscar}>
+      <input type="text" name="" id="" 
+        placeholder='Ingrese un artista o canción'
+        onChange={e => setBuscar(e.target.value)}
+      />
+      <button>Buscar</button>
+     </form>
+     {existe&&(
       <>
-        <div key = {index}>
-          <img src={cancion.data.albumOfTrack.coverArt.sources[0].url}/>
-          <h2>{cancion.data.name}</h2>
-          <a href={cancion.data.uri}><button>Escuchar Canción</button></a>
-        </div>
+        <Tarjetas
+        segundaBusqueda = {segundaBusqueda}
+        />
       </>
-    ))}
-    </>
+     )}
+    </div>
+    
   )
 }
  
