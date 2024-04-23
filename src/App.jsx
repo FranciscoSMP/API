@@ -1,6 +1,4 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 
 function App() {
@@ -14,7 +12,7 @@ function App() {
       return
     }
     setCancion('')
-    getSong(cancion)
+    getCancion(cancion)
   }
 
   const options = {
@@ -25,7 +23,7 @@ function App() {
     }
   };
 
-  async function getSong(cancion){
+  async function getCancion(cancion){
     try {
       let url = `https://spotify23.p.rapidapi.com/search/?q=${cancion}&type=multi&offset=0&limit=10&numberOfTopResults=5`
       let data = await fetch(url,options)
@@ -46,7 +44,7 @@ function App() {
     {canciones.map((cancion, index) => (
       <>
         <div key = {index}>
-          <img src={cancion.data.albumOfTrack.coverArt.sources[0].url} alt="" srcset="" />
+          <img src={cancion.data.albumOfTrack.coverArt.sources[0].url}/>
           <h2>{cancion.data.name}</h2>
           <a href={cancion.data.uri}><button>Escuchar Canción</button></a>
         </div>
