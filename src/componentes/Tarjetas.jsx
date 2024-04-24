@@ -2,6 +2,7 @@ import React from 'react';
 import './tarjetas.css';
 
 export const Tarjetas = ({ segundaBusqueda }) => {
+
   const formatDuration = (milliseconds) => {
     const totalSeconds = milliseconds / 1000;
     const minutes = Math.floor(totalSeconds / 60);
@@ -30,12 +31,12 @@ export const Tarjetas = ({ segundaBusqueda }) => {
       };
       const res = await fetch(url, options);
       if (res.ok) {
-        console.log('¡Canción marcada como "Me Gusta" con éxito!');
+        alert('¡Canción marcada como "Me Gusta" con éxito!');
       } else {
-        console.error('Error al marcar la canción como "Me Gusta":', res.status);
+        alert('Error al marcar la canción como "Me Gusta":', res.status);
       }
     } catch (error) {
-      console.error('Error al marcar la canción como "Me Gusta":', error);
+      alert('Error al marcar la canción como "Me Gusta":', error);
     }
   };
 
