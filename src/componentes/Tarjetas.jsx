@@ -1,8 +1,10 @@
 import React from 'react';
-import './tarjetas.css';
+import './tarjetas.css'; // Importa estilos CSS para este componente
 
+// Definición del componente Tarjetas
 export const Tarjetas = ({ segundaBusqueda }) => {
 
+  // Función para formatear la duración de la canción  
   const formatDuration = (milliseconds) => {
     const totalSeconds = milliseconds / 1000;
     const minutes = Math.floor(totalSeconds / 60);
@@ -10,11 +12,14 @@ export const Tarjetas = ({ segundaBusqueda }) => {
     return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
   };
 
+  
+  // Función para obtener el enlace de Spotify de una canción
   const getSpotifyLink = (uri) => {
     const trackId = uri.split(':').pop(); // Obtiene el ID de la canción
     return `https://open.spotify.com/intl-es/track/${trackId}`;
   };
 
+  // Función para marcar una canción como "Me Gusta"
   const marcarCancionComoMeGusta = async (cancionId) => {
     try {
       const url = 'https://spotify-web-api3.p.rapidapi.com/v1/social/spotify/getmylikedsongs';
@@ -31,15 +36,16 @@ export const Tarjetas = ({ segundaBusqueda }) => {
       };
       const res = await fetch(url, options);
       if (res.ok) {
-        alert('¡Canción marcada como "Me Gusta" con éxito!');
+        alert('¡Canción marcada como "Me Gusta" con éxito!'); // Muestra mensaje de éxito
       } else {
-        alert('Error al marcar la canción como "Me Gusta":', res.status);
+        alert('Error al marcar la canción como "Me Gusta":', res.status); // Muestra mensaje de error
       }
     } catch (error) {
-      alert('Error al marcar la canción como "Me Gusta":', error);
+      alert('Error al marcar la canción como "Me Gusta":', error); // Muestra mensaje de error en caso de excepción
     }
   };
 
+  // Renderizado del componente
   return (
     <div className='container'>
       {segundaBusqueda.map((cancion, i) => (
